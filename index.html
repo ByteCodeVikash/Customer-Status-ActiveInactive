@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Status: Active/Inactive</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Customer Status: Active/Inactive</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+                <tr>
+                    <td data-label="Customer ID">001</td>
+                    <td data-label="Name">John Doe</td>
+                    <td data-label="Email">john.doe@example.com</td>
+                    <td data-label="Phone">123-456-7890</td>
+                    <td data-label="Status" class="status-active">Active</td>
+                    <td data-label="Action">
+                        <button class="edit-button" onclick="openEditPopup(this)">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-label="Customer ID">002</td>
+                    <td data-label="Name">Jane Smith</td>
+                    <td data-label="Email">jane.smith@example.com</td>
+                    <td data-label="Phone">987-654-3210</td>
+                    <td data-label="Status" class="status-inactive">Inactive</td>
+                    <td data-label="Action">
+                        <button class="edit-button" onclick="openEditPopup(this)">Edit</button>
+                    </td>
+                </tr>
+                <!-- Additional rows go here -->
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button class="chart-button" onclick="showPopup('pie')">3D Pie Chart</button>
+            <button class="chart-button" onclick="showPopup('bar')">Bar Graph</button>
+            <button class="chart-button" onclick="showPopup('line')">Line Chart</button>
+            <button class="chart-button" onclick="showPopup('doughnut')">Doughnut Chart</button>
+            <button class="chart-button" onclick="showPopup('area')">Area Chart</button>
+        </div>
+        <div class="popup" id="popup" onclick="hidePopup(event)">
+            <div class="popup-content" onclick="event.stopPropagation()">
+                <span class="popup-close" onclick="hidePopup(event)">X</span>
+                <div id="chartContainer"></div>
+            </div>
+        </div>
+        <div class="popup" id="editPopup" onclick="hidePopup(event)">
+            <div class="popup-content" onclick="event.stopPropagation()">
+                <span class="popup-close" onclick="hideEditPopup()">X</span>
+                <h3>Edit User</h3>
+                <div class="form-container">
+                    <label for="editUserId">Customer ID</label>
+                    <input type="text" id="editUserId" disabled>
+                    <label for="editName">Name</label>
+                    <input type="text" id="editName">
+                    <label for="editEmail">Email</label>
+                    <input type="text" id="editEmail">
+                    <label for="editPhone">Phone</label>
+                    <input type="text" id="editPhone">
+                    <label for="editStatus">Status</label>
+                    <select id="editStatus">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                    <button onclick="saveUser()">Save</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p style="margin: 0;">&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
